@@ -1,6 +1,6 @@
 package demo.lunaconf.tools
 
-import dev.langchain4j.agent.tool.{P, Tool}
+import dev.langchain4j.agent.tool.Tool
 
 class CustomTool {
 

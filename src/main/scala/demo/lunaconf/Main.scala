@@ -1,11 +1,11 @@
 package demo.lunaconf
 
-import demo.lunaconf.service.OllamaGemma2Service
+
 
 object Main extends App {
   private val demoExamples = new DemoExamples()
 
-  val demo = args(0).toInt
+  val demo: Int = args(0).toInt
 
   demo match {
     case 1 => demoExamples.demo1()
