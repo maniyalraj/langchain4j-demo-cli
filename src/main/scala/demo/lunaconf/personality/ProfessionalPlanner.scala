@@ -10,5 +10,4 @@ trait ProfessionalPlanner {
     )
   )
   def chat(userMessage: String): String
-
 }

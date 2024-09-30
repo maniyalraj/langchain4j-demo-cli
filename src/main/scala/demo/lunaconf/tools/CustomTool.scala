@@ -7,9 +7,7 @@ class CustomTool {
   @Tool(Array("Notifies when a user asks for Gold membership"))
   def notifyGoldMembershipEnquiry(): Unit = {
     val r = requests.get("http://localhost:8080/notify")
-    println(r.url)
-    println(r.statusCode)
-
+    println(s"URL: ${r.url}")
+    println(s"Status Code: ${r.statusCode}")
   }
-
 }
