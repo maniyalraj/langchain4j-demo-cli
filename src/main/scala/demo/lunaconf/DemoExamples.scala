@@ -15,14 +15,13 @@ class DemoExamples() {
 
   private val model = new OllamaGemma2Service().buildModel()
 
-  def demo1(): Unit = {
-    /** Hello World **/
+  def demo1(): Unit =
+    /** Hello World * */
     prettyPrint(model.generate("Hi, my name is Raj"))
-  }
 
-  def demo2():Unit = {
-    /**
-     * Interaction with a Friendly persona
+  def demo2(): Unit = {
+
+    /** Interaction with a Friendly persona
       */
     val friend = AiServices.create(classOf[Friendly], model)
 
@@ -32,10 +31,10 @@ class DemoExamples() {
 
   }
 
-  def demo3():Unit = {
-    /**
-     * Interaction with a Sarcastic persona
-     */
+  def demo3(): Unit = {
+
+    /** Interaction with a Sarcastic persona
+      */
     val sarcasticAI = AiServices.create(classOf[Sarcastic], model)
 
     val response = sarcasticAI.chat("Hello")
@@ -45,18 +44,20 @@ class DemoExamples() {
   }
 
   def demo4(): Unit = {
-    /**
-     * Example of chat with a memory
-     */
+
+    /** Example of chat with a memory
+      */
     val chatMemory = MessageWindowChatMemory.withMaxMessages(10)
 
-    val sarcasticAI = AiServices.builder(classOf[Sarcastic])
+    val sarcasticAI = AiServices
+      .builder(classOf[Sarcastic])
       .chatLanguageModel(model)
       .chatMemory(chatMemory)
       .build()
 
 // Add different personas to use the same chat memory
-    val friendlyAI = AiServices.builder(classOf[Friendly])
+    val friendlyAI = AiServices
+      .builder(classOf[Friendly])
       .chatLanguageModel(model)
       .chatMemory(chatMemory)
       .build()
@@ -69,13 +70,13 @@ class DemoExamples() {
 
   def demo5(): Unit = {
 
-    /**
-     * Custom POJO extractor
-     */
+    /** Custom POJO extractor
+      */
 
     val lunatechEmployeeExtractor = AiServices.create(classOf[LunatechEmployeeExtractor], model)
 
-    val textForExtraction = "Raj joined Lunatech in the summer of 2021, his family name is Maniyal and he was born on the first thursday of 1994 "
+    val textForExtraction =
+      "Raj joined Lunatech in the summer of 2021, his family name is Maniyal and he was born on the first thursday of 1994 "
 //    val textForExtraction = "Raj joined Lunatech in the summer of 2021, and he was born on the first thursday of 1994 "
 
     val result = lunatechEmployeeExtractor.extractEmployeeDetailFrom(textForExtraction)
@@ -83,14 +84,15 @@ class DemoExamples() {
     prettyPrint(result.toString)
   }
 
-  def demo6():Unit = {
-    /**
-     * Calling custom tools
-     */
+  def demo6(): Unit = {
+
+    /** Calling custom tools
+      */
 
     val lamma3_1model = new OllamaLamma3_1Service().buildModel()
 
-    val serviceWithTool = AiServices.builder(classOf[ChatBotAssistant])
+    val serviceWithTool = AiServices
+      .builder(classOf[ChatBotAssistant])
       .chatLanguageModel(lamma3_1model)
       .tools(new CustomTool())
       .build()
@@ -103,9 +105,8 @@ class DemoExamples() {
 
   def demo7(): Unit = {
 
-    /**
-     * Prompt templates
-     */
+    /** Prompt templates
+      */
     val planner = AiServices.create(classOf[ProfessionalPlanner], model)
 
     val itineraryPlanner = ItineraryPlanner(destination = "Rotterdam", days = 2)
@@ -116,22 +117,27 @@ class DemoExamples() {
 
   }
 
-  def demo8():Unit = {
+  def demo8(): Unit = {
 
-    /**
-     * RAG with private information
-     */
+    /** RAG with private information
+      */
 
-    val contentRetriever = new DocumentRetriever().getContentRetriever("/Users/rajendra.maniyal/Desktop/Personal/Code/lanchain4j-demo-cli/src/main/resources/veloria.txt")
-    val planner = AiServices.builder(classOf[ProfessionalPlanner]).chatLanguageModel(model).contentRetriever(contentRetriever).build()
+    val contentRetriever = new DocumentRetriever().getContentRetriever(
+      "/Users/rajendra.maniyal/Desktop/Personal/Code/lanchain4j-demo-cli/src/main/resources/veloria.txt"
+    )
+    val planner = AiServices
+      .builder(classOf[ProfessionalPlanner])
+      .chatLanguageModel(model)
+      .contentRetriever(contentRetriever)
+      .build()
 
     val itineraryPlanner = ItineraryPlanner(destination = "Veloria", days = 2)
-    val response =  planner.chat(promptTemplate(itineraryPlanner))
+    val response = planner.chat(promptTemplate(itineraryPlanner))
 
     prettyPrint(response)
   }
 
-  private def prettyPrint(message : String*): Unit = {
+  private def prettyPrint(message: String*): Unit = {
     printf("\n================ Model response ================\n")
     message.foreach(println)
     printf("\n================================================\n")
@@ -145,7 +151,7 @@ class DemoExamples() {
       |██║     ██║   ██║██║╚██╗██║██╔══██║██║     ██║   ██║██║╚██╗██║██╔══╝      ██╔═══╝ ████╔╝██║██╔═══╝ ╚════██║
       |███████╗╚██████╔╝██║ ╚████║██║  ██║╚██████╗╚██████╔╝██║ ╚████║██║         ███████╗╚██████╔╝███████╗     ██║
       |╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝         ╚══════╝ ╚═════╝ ╚══════╝     ╚═╝
-      |""".stripMargin)
-
+      |""".stripMargin
+  )
 
 }

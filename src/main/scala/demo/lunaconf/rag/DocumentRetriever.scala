@@ -10,15 +10,16 @@ import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore
 
 class DocumentRetriever {
 
-  def getContentRetriever(documentPath: String): EmbeddingStoreContentRetriever ={
+  def getContentRetriever(documentPath: String): EmbeddingStoreContentRetriever = {
 
     val documentParser = new TextDocumentParser()
     val document = loadDocument(documentPath, documentParser)
 
-    val documentSplitter = DocumentSplitters.recursive(300,0)
+    val documentSplitter = DocumentSplitters.recursive(300, 0)
     val segments = documentSplitter.split(document)
 
-    val embeddingModel = OllamaEmbeddingModel.builder()
+    val embeddingModel = OllamaEmbeddingModel
+      .builder()
       .baseUrl("http://localhost:11434")
       .modelName("all-minilm")
       .build()
@@ -28,7 +29,8 @@ class DocumentRetriever {
     val embeddingStore = new InMemoryEmbeddingStore[TextSegment]()
     embeddingStore.addAll(embeddings, segments)
 
-    val contentRetriever = EmbeddingStoreContentRetriever.builder()
+    val contentRetriever = EmbeddingStoreContentRetriever
+      .builder()
       .embeddingStore(embeddingStore)
       .embeddingModel(embeddingModel)
       .maxResults(20)
@@ -38,6 +40,5 @@ class DocumentRetriever {
     contentRetriever
 
   }
-
 
 }

@@ -1,4 +1,3 @@
-
 // The simplest possible sbt build file is just one line:
 
 scalaVersion := "2.13.12"
@@ -23,12 +22,11 @@ Compile / resourceDirectory := baseDirectory.value / "src" / "main" / "resources
 // mostly only necessary if you intend to publish your library's binaries on a
 // place like Sonatype.
 
-
 // Want to use a published library in your project?
 // You can define other libraries as dependencies in your build like this:
 
 libraryDependencies ++= Seq(
-  "org.scala-lang.modules" %% "scala-parser-combinators" % "2.3.0" ,
+  "org.scala-lang.modules" %% "scala-parser-combinators" % "2.3.0",
   "dev.langchain4j" % "langchain4j" % "0.34.0",
   "dev.langchain4j" % "langchain4j-ollama" % "0.34.0",
   "ch.qos.logback" % "logback-classic" % "1.4.11",
