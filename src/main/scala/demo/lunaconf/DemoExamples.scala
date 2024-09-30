@@ -1,14 +1,17 @@
 package demo.lunaconf
 
 import demo.lunaconf.model.LunatechEmployeeExtractor
-import demo.lunaconf.personality.{ChatBotAssistant, Friendly, ProfessionalPlanner, Sarcastic}
+import demo.lunaconf.personality.ChatBotAssistant
+import demo.lunaconf.personality.Friendly
+import demo.lunaconf.personality.ProfessionalPlanner
+import demo.lunaconf.personality.Sarcastic
 import demo.lunaconf.prompts.ItineraryPlanner
 import demo.lunaconf.prompts.ItineraryPlanner.promptTemplate
 import demo.lunaconf.rag.DocumentRetriever
-import demo.lunaconf.service.{DemoAiServices, OllamaGemma2Service, OllamaLamma3_1Service}
+import demo.lunaconf.service.OllamaGemma2Service
+import demo.lunaconf.service.OllamaLamma3_1Service
 import demo.lunaconf.tools.CustomTool
 import dev.langchain4j.memory.chat.MessageWindowChatMemory
-import dev.langchain4j.model.chat.ChatLanguageModel
 import dev.langchain4j.service.AiServices
 
 class DemoExamples() {

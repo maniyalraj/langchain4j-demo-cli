@@ -1,6 +1,6 @@
 package demo.lunaconf.prompts
 
-import dev.langchain4j.model.input.structured.StructuredPrompt
+
 
 case class ItineraryPlanner(destination: String, days: Int)
 

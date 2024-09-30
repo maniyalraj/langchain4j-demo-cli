@@ -15,6 +15,8 @@ scalaVersion := "2.13.12"
 name := "lanchain4j-demo-cli"
 organization := "ch.epfl.scala"
 version := "1.0"
+scalacOptions := Seq("-feature", "-Ywarn-unused" )
+
 
 Compile / resourceDirectory := baseDirectory.value / "src" / "main" / "resources"
 
@@ -78,6 +80,5 @@ libraryDependencies ++= Seq(
 //     )),
 //     name := "hello-world"
 //   )
-
 // To learn more about multi-project builds, head over to the official sbt
 // documentation at http://www.scala-sbt.org/documentation.html
