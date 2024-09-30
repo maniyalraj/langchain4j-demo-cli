@@ -3,9 +3,7 @@ package demo.lunaconf
 import demo.lunaconf.service.OllamaGemma2Service
 
 object Main extends App {
-  private val model = new OllamaGemma2Service().buildModel()
-
-  private val demoExamples = new DemoExamples(model)
+  private val demoExamples = new DemoExamples()
 
   val demo = args(0).toInt
 
