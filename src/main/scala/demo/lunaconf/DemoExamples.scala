@@ -88,14 +88,18 @@ class DemoExamples() {
   /* Calling custom tools */
   def demo6(): Unit = {
 
+    val chatMemory: MessageWindowChatMemory = MessageWindowChatMemory.withMaxMessages(10)
+
     val lamma3_1model: ChatLanguageModel = new OllamaLamma3_1Service().buildModel()
 
     val serviceWithTool: ChatBotAssistant = AiServices
       .builder(classOf[ChatBotAssistant])
       .chatLanguageModel(lamma3_1model)
+      .chatMemory(chatMemory)
       .tools(new CustomTool())
       .build()
 
+    serviceWithTool.chat("Hello I am raj")
     val result: String = serviceWithTool.chat("What is the price of Golden memberships?")
 
     prettyPrint(result)
