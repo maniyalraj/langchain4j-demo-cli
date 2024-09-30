@@ -19,9 +19,6 @@ version := "1.0"
 
 Compile / resourceDirectory := baseDirectory.value / "src" / "main" / "resources"
 
-val slf4jExclusion   = ExclusionRule(organization = "org.slf4j")
-
-
 // Note, it's not required for you to define these three settings. These are
 // mostly only necessary if you intend to publish your library's binaries on a
 // place like Sonatype.
@@ -31,9 +28,10 @@ val slf4jExclusion   = ExclusionRule(organization = "org.slf4j")
 // You can define other libraries as dependencies in your build like this:
 
 libraryDependencies ++= Seq(
-  "org.scala-lang.modules" %% "scala-parser-combinators" % "2.3.0",
-"dev.langchain4j" % "langchain4j" % "0.34.0",
-"dev.langchain4j" % "langchain4j-ollama" % "0.34.0",
+  "org.scala-lang.modules" %% "scala-parser-combinators" % "2.3.0" ,
+  "dev.langchain4j" % "langchain4j" % "0.34.0",
+  "dev.langchain4j" % "langchain4j-ollama" % "0.34.0",
+  "ch.qos.logback" % "logback-classic" % "1.4.11"
 )
 
 // Here, `libraryDependencies` is a set of dependencies, and by using `+=`,
