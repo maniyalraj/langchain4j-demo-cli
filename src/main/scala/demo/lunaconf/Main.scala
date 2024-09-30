@@ -1,7 +1,5 @@
 package demo.lunaconf
 
-
-
 object Main extends App {
   private val demoExamples = new DemoExamples()
 

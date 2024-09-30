@@ -1,7 +1,5 @@
 package demo.lunaconf.prompts
 
-
-
 case class ItineraryPlanner(destination: String, days: Int)
 
 case object ItineraryPlanner {
