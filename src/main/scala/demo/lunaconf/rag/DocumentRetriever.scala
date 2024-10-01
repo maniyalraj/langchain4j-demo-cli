@@ -20,13 +20,13 @@ class DocumentRetriever {
     val documentParser: TextDocumentParser = new TextDocumentParser()
     val document: Document = loadDocument(documentPath, documentParser)
 
-    val documentSplitter: DocumentSplitter = DocumentSplitters.recursive(300, 0)
+    val documentSplitter: DocumentSplitter = DocumentSplitters.recursive(100, 0)
     val segments: util.List[TextSegment] = documentSplitter.split(document)
 
     val embeddingModel: OllamaEmbeddingModel = OllamaEmbeddingModel
       .builder()
       .baseUrl("http://localhost:11434")
-      .modelName("all-minilm")
+      .modelName("nomic-embed-text")
       .build()
 
     val embeddings: util.List[Embedding] = embeddingModel.embedAll(segments).content()

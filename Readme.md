@@ -12,7 +12,7 @@
 
 `ollamma pull llama3.1`
 
-`ollamma pull all-minilm`
+`ollamma pull nomic-embed-text`
 
 #### Start the ollama inference server
 `ollamma serve`
