@@ -120,6 +120,8 @@ class DemoExamples() {
   /* RAG with private information  */
   def demo8(): Unit = {
 
+    val lamma3_1model: ChatLanguageModel = new OllamaLamma3_1Service().buildModel()
+
     val contentRetriever = new DocumentRetriever()
       .getContentRetriever(
         "/Users/rajendra.maniyal/Desktop/Personal/Code/lanchain4j-demo-cli/src/main/resources/veloria.txt"
@@ -127,7 +129,7 @@ class DemoExamples() {
 
     val planner: ProfessionalPlanner = AiServices
       .builder(classOf[ProfessionalPlanner])
-      .chatLanguageModel(model)
+      .chatLanguageModel(lamma3_1model)
       .contentRetriever(contentRetriever)
       .build()
 
