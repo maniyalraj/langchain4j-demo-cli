@@ -31,6 +31,7 @@ libraryDependencies ++= Seq(
   "org.scala-lang.modules" %% "scala-parser-combinators" % "2.3.0",
   "dev.langchain4j" % "langchain4j" % "0.34.0",
   "dev.langchain4j" % "langchain4j-ollama" % "0.34.0",
+  "dev.langchain4j" % "langchain4j-document-parser-apache-tika" % "0.35.0",
   "ch.qos.logback" % "logback-classic" % "1.4.11",
   "com.lihaoyi" %% "requests" % "0.9.0"
 )

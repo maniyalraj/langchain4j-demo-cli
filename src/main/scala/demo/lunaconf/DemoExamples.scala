@@ -124,17 +124,16 @@ class DemoExamples() {
 
     val contentRetriever = new DocumentRetriever()
       .getContentRetriever(
-        "/Users/rajendra.maniyal/Desktop/Personal/Code/lanchain4j-demo-cli/src/main/resources/veloria.txt"
+        "http://localhost:8081/Solar%20Power%20Optimization%20System%20(SPOS).pdf"
       )
 
-    val planner: ProfessionalPlanner = AiServices
-      .builder(classOf[ProfessionalPlanner])
+    val friendly = AiServices
+      .builder(classOf[Friendly])
       .chatLanguageModel(lamma3_1model)
       .contentRetriever(contentRetriever)
       .build()
 
-    val itineraryPlanner: ItineraryPlanner = ItineraryPlanner(destination = "Veloria", days = 2)
-    val response: String = planner.chat(promptTemplate(itineraryPlanner))
+    val response = friendly.chat("What is SPOS?")
 
     prettyPrint(response)
   }
