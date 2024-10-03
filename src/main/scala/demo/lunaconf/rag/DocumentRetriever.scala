@@ -4,8 +4,8 @@ import java.util
 
 import dev.langchain4j.data.document.Document
 import dev.langchain4j.data.document.DocumentSplitter
-import dev.langchain4j.data.document.loader.FileSystemDocumentLoader.loadDocument
-import dev.langchain4j.data.document.parser.TextDocumentParser
+import dev.langchain4j.data.document.loader.UrlDocumentLoader
+import dev.langchain4j.data.document.parser.apache.tika.ApacheTikaDocumentParser
 import dev.langchain4j.data.document.splitter.DocumentSplitters
 import dev.langchain4j.data.embedding.Embedding
 import dev.langchain4j.data.segment.TextSegment
@@ -15,12 +15,11 @@ import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore
 
 class DocumentRetriever {
 
-  def getContentRetriever(documentPath: String): EmbeddingStoreContentRetriever = {
+  def getContentRetriever(url: String): EmbeddingStoreContentRetriever = {
 
-    val documentParser: TextDocumentParser = new TextDocumentParser()
-    val document: Document = loadDocument(documentPath, documentParser)
+    val document: Document = UrlDocumentLoader.load(url, new ApacheTikaDocumentParser())
 
-    val documentSplitter: DocumentSplitter = DocumentSplitters.recursive(100, 0)
+    val documentSplitter: DocumentSplitter = DocumentSplitters.recursive(200, 0)
     val segments: util.List[TextSegment] = documentSplitter.split(document)
 
     val embeddingModel: OllamaEmbeddingModel = OllamaEmbeddingModel
