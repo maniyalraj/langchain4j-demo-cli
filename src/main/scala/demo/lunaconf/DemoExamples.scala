@@ -133,7 +133,7 @@ class DemoExamples() {
       .contentRetriever(contentRetriever)
       .build()
 
-    val response = friendly.chat("What is SPOS?")
+    val response = friendly.chat("Explain some key concepts in SPOS?")
 
     prettyPrint(response)
   }
